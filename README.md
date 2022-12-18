@@ -3,7 +3,7 @@
 Ultimate solution to enable seamless mouse scroll in tmux.
 
 When no process running, it will scroll over the pane content. Otherwise,
-depending on process name, if will pass <kbd>↑</kbd> / <kbd>↓</kbd> or
+depending on process name, it will pass <kbd>↑</kbd> / <kbd>↓</kbd> or
 <kbd>Page Up</kbd> / <kbd>Page Down</kbd> keys.
 
 ## Features
