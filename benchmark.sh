@@ -1,5 +1,12 @@
 set -e
 
+case "$OSTYPE" in
+  "darwin"*)
+    echo "macOS is not supported"
+    exit 1
+    ;;
+esac
+
 cd "$(dirname "$0")"
 
 TARGET_PID=$$ # PID of benchmark.sh

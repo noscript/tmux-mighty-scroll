@@ -3,12 +3,19 @@ CURRENT_DIR="$(cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P)"
 . "$CURRENT_DIR/scripts/helpers.sh"
 . "$CURRENT_DIR/scripts/variables.sh"
 
-if which cc >/dev/null 2>&1; then
-  make -f "$CURRENT_DIR/Makefile" -C "$CURRENT_DIR" >/dev/null 2>&1
-  set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck"
-else
-  set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck.sh"
-fi
+case "$OSTYPE" in
+  "darwin"*)
+    set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck.sh"
+    ;;
+  *)
+    if which cc >/dev/null 2>&1; then
+      make -f "$CURRENT_DIR/Makefile" -C "$CURRENT_DIR" >/dev/null 2>&1
+      set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck"
+    else
+      set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck.sh"
+    fi
+    ;;
+esac
 
 set_tmux_environment "MIGHTY_SCROLL_INTERVAL" "$(get_tmux_option "$interval_option" "$interval_default")"
 set_tmux_environment "MIGHTY_SCROLL_BY_LINE" "$(get_tmux_option "$by_line_option" "$by_line_default")"

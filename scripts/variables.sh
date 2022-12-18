@@ -8,7 +8,7 @@ by_line_option="@mighty-scroll-by-line"
 by_line_default="man less pager fzf"
 
 by_page_option="@mighty-scroll-by-page"
-by_page_default="irssi vim"
+by_page_default="irssi vim vi"
 
 fallback_mode_option="@mighty-scroll-fallback-mode"
 fallback_mode_default="history"

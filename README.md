@@ -22,8 +22,7 @@ See `@mighty-scroll-fallback-mode`.
 ## Requirements
 
 * Mouse mode enabled (`set -g mouse on`).
-* Linux (`/proc` file system).
-* C compiler (optional, but highly recommended).
+* C compiler (Linux only. Optional, but highly recommended).
 
 ## Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
@@ -62,7 +61,7 @@ $ tmux source ~/.tmux.conf
 |`@mighty-scroll-interval`|`2`|Number|How many lines to scroll in `by-line` and `history` modes.|
 |`@mighty-scroll-select-pane`|`on`|`on`, `off`|If enabled, the pane being scrolled becomes automatically selected.|
 |`@mighty-scroll-by-line`|`'man less pager fzf'`|List|Space separated list of processes that will be scrolled  by line.|
-|`@mighty-scroll-by-page`|`'irssi vim'`|List|Space separated list of processes that will be scrolled by page.|
+|`@mighty-scroll-by-page`|`'irssi vim vi'`|List|Space separated list of processes that will be scrolled by page.|
 |`@mighty-scroll-fallback-mode`|`'history'`|`'history'`, `'by-line'`, `'by-page'`|Scroll mode when in alternate screen but the process didn't match `by-line` and `by-page` lists from above.|
 
 Scrolling modes:
@@ -82,9 +81,11 @@ set -g @mighty-scroll-select-pane off
 
 ## Performance caveats
 
-Be sure to have a C compiler (`gcc`, `clang`) available (check with `$ cc -v`),
-otherwise a Shell implementation of the process checker will be used,
-which is about 400% slower!
+On Linux, make sure to have a C compiler (`gcc`, `clang`) available (check with
+`$ cc -v`), otherwise a Shell implementation of the process checker will be
+used, which is about 400% slower!
+
+On macOS there is only a Shell implementation of the process checker at the moment.
 
 ## License
 [MIT](LICENSE.MIT)
