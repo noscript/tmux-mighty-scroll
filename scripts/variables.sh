@@ -8,7 +8,10 @@ by_line_option="@mighty-scroll-by-line"
 by_line_default="man less pager fzf"
 
 by_page_option="@mighty-scroll-by-page"
-by_page_default="irssi vim vi"
+by_page_default="irssi vi"
+
+pass_through_option="@mighty-scroll-pass-through"
+pass_through_default="vim nvim"
 
 fallback_mode_option="@mighty-scroll-fallback-mode"
 fallback_mode_default="history"
