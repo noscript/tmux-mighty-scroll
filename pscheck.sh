@@ -1,4 +1,4 @@
-# Copyright (C) 2022 Sergey Vlasov <sergey@vlasov.me>
+# Copyright (C) 2023 Sergey Vlasov <sergey@vlasov.me>
 # MIT License
 
 if [ $# -lt 2 ]; then
@@ -24,6 +24,17 @@ process_name() {
   esac
 }
 
+is_process_stopped() {
+  case "$OSTYPE" in
+    "darwin"*)
+      [ "$(ps -p $1 -o state=)" = "T" ]
+      ;;
+    *)
+      [ "$(sed -n '/^State:/s/State:\t\(.\).*/\1/p' /proc/$1/status)" = "T" ]
+      ;;
+  esac
+}
+
 process_children() {
   case "$OSTYPE" in
     "darwin"*)
@@ -44,6 +55,9 @@ walk() {
 
     for N in $NAMES; do
       if [ "$N" = "$CMD_NAME" ]; then # it's a match
+        if (is_process_stopped $P); then
+          exit 1
+        fi
         echo "$N"
         exit 0
       fi

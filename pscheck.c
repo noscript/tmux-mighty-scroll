@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Sergey Vlasov <sergey@vlasov.me>
+// Copyright (C) 2023 Sergey Vlasov <sergey@vlasov.me>
 // MIT License
 
 #define _GNU_SOURCE
@@ -14,7 +14,7 @@ void read_file(char *path, char *buf)
     buf[0] = '\0';
 
     FILE *f = fopen(path, "r");
-    if (!f) { // process no longer exists or something else
+    if (!f) {  // process no longer exists or something else
         return;
     }
 
@@ -31,11 +31,29 @@ void walk(char *pids, int namesc, char *namesv[])
     char *save_ptr = pids;
     char *pid = strtok_r(pids, " ", &save_ptr);
     while (pid) {
+        // read process name:
         snprintf(path_buf, BUF_LEN, "/proc/%s/comm", pid);
         read_file(path_buf, read_buf);
+
         if (read_buf[0] != '\0') {
             for (int i = 0; i < namesc; ++i) {
-                if (!strcmp(read_buf, namesv[i])) { // it's a match
+                if (!strcmp(read_buf, namesv[i])) {  // it's a match
+                    // read process state:
+                    snprintf(path_buf, BUF_LEN, "/proc/%s/status", pid);
+                    read_file(path_buf, read_buf);
+                    char *line = strtok(read_buf, "\n");
+                    while (line) {
+                        const size_t state_pos = 7;
+                        if (!strncmp(line, "State:\t", state_pos)) {
+                            // stopped (suspended):
+                            if (line[state_pos] == 'T') {
+                                exit(1);
+                            }
+                            break;
+                        }
+                        line = strtok(NULL, "\n");
+                    }
+
                     printf("%s\n", namesv[i]);
                     exit(0);
                 }
