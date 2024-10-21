@@ -15,3 +15,6 @@ pass_through_default="vim nvim"
 
 fallback_mode_option="@mighty-scroll-fallback-mode"
 fallback_mode_default="history"
+
+show_indicator_option="@mighty-scroll-show-indicator"
+show_indicator_default="off"
