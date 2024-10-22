@@ -63,7 +63,7 @@ $ tmux source ~/.tmux.conf
 |`@mighty-scroll-by-line`|`'man less pager fzf'`|List|Space separated list of processes that will be scrolled  by line.|
 |`@mighty-scroll-by-page`|`'irssi vi'`|List|Space separated list of processes that will be scrolled by page.|
 |`@mighty-scroll-pass-through`|`'vim nvim'`|List|Space separated list of processes that will receive mouse scroll events as is.|
-|`@mighty-scroll-fallback-mode`|`'history'`|`'history'`, `'by-line'`, `'by-page'`|Scroll mode when in alternate screen but the process didn't match `by-line` and `by-page` lists from above.|
+|`@mighty-scroll-fallback-mode`|`'history'`|`'history'`, `'by-line'`, `'by-page'`, `'pass-through'`|Scroll mode when in alternate screen but the process didn't match the lists from above.|
 |`@mighty-scroll-show-indicator`|`off`|`on`, `off`|If enabled, shows the position indicator in the top right with current position and the number of lines in the history.|
 
 Scrolling modes:
