@@ -60,17 +60,18 @@ $ tmux source ~/.tmux.conf
 |---|---|---|---|
 |`@mighty-scroll-interval`|`2`|Number|How many lines to scroll in `by-line` and `history` modes.|
 |`@mighty-scroll-select-pane`|`on`|`on`, `off`|If enabled, the pane being scrolled becomes automatically selected.|
-|`@mighty-scroll-by-line`|`'man less pager fzf'`|List|Space separated list of processes that will be scrolled  by line.|
+|`@mighty-scroll-by-line`|`'man less pager fzf'`|List|Space separated list of processes that will be scrolled by line.|
 |`@mighty-scroll-by-page`|`'irssi vi'`|List|Space separated list of processes that will be scrolled by page.|
 |`@mighty-scroll-pass-through`|`'vim nvim'`|List|Space separated list of processes that will receive mouse scroll events as is.|
 |`@mighty-scroll-fallback-mode`|`'history'`|`'history'`, `'by-line'`, `'by-page'`, `'pass-through'`|Scroll mode when in alternate screen but the process didn't match the lists from above.|
-|`@mighty-scroll-show-indicator`|`off`|`on`, `off`|If enabled, shows the position indicator in the top right with current position and the number of lines in the history.|
+|`@mighty-scroll-show-indicator`|`off`|`on`, `off`|If enabled, shows the position indicator in the top right with the current position and the number of lines in the history.|
 
 Scrolling modes:
 
 * `history` - enter copy mode and scroll over the pane content by line.
 * `by-line` - scroll by line, the running process will receive <kbd>↑</kbd> / <kbd>↓</kbd> keys.
 * `by-page` - scroll by page, the running process will receive <kbd>Page Up</kbd> / <kbd>Page Down</kbd> keys.
+* `pass-though` - the running process will receive mouse scroll events as is.
 
 Example configuration:
 
