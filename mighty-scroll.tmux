@@ -8,9 +8,15 @@ case "$OSTYPE" in
     set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck.sh"
     ;;
   *)
-    if which cc >/dev/null 2>&1; then
-      make -f "$CURRENT_DIR/Makefile" -C "$CURRENT_DIR" >/dev/null 2>&1
-      set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck"
+    CC="${CC:-cc}"
+    if which "$CC" >/dev/null 2>&1; then
+      SRC="$CURRENT_DIR/pscheck.c"
+      OUT="$CURRENT_DIR/pscheck"
+      if [ ! -e "$OUT" ] || [ "$SRC" -nt "$OUT" ]; then
+        CFLAGS="-O3 $CFLAGS"
+        "$CC" -Wall -Wextra -Werror -Wconversion -pedantic -std=c99 $CFLAGS "$SRC" -o "$OUT" 2>&1
+      fi
+      set_tmux_environment "PSCHECK" "$OUT"
     else
       set_tmux_environment "PSCHECK" "$CURRENT_DIR/pscheck.sh"
     fi
