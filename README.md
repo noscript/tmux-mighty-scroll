@@ -71,7 +71,7 @@ Scrolling modes:
 * `history` - enter copy mode and scroll over the pane content by line.
 * `by-line` - scroll by line, the running process will receive <kbd>↑</kbd> / <kbd>↓</kbd> keys.
 * `by-page` - scroll by page, the running process will receive <kbd>Page Up</kbd> / <kbd>Page Down</kbd> keys.
-* `pass-though` - the running process will receive mouse scroll events as is.
+* `pass-through` - the running process will receive mouse scroll events as is.
 
 Example configuration:
 
