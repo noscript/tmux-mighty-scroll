@@ -18,7 +18,7 @@ process_name() {
       ;;
     *)
       if [ -f /proc/$1/comm ]; then
-        cat /proc/$P/comm
+        cat /proc/$1/comm
       fi
       ;;
   esac
